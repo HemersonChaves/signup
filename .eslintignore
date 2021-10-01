@@ -1,0 +1,8 @@
+/*.js
+node_modules
+dist
+
+.editorconfig
+.eslintrc.json
+
+_tests_
