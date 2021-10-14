@@ -6,4 +6,4 @@ interface IAccount {
 }
 
 
-export {IAccount}
+export { IAccount }
