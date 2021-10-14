@@ -19,7 +19,7 @@ const makeAddAccount = (): IAddAccount => {
     class AddAccountStub implements IAddAccount {
         add(account: IAddAccountModel): IAccount {
 
-            const fakeAccount:IAccount= {
+            const fakeAccount: IAccount = {
                 id: 'valid_id',
                 name: 'valid_name',
                 email: 'valid_email@email',
@@ -184,7 +184,7 @@ describe('Signup Controller', () => {
         expect(httpResponse.statusCode).toBe(500);
         expect(httpResponse.body).toEqual(new ServerError());
     });
-    
+
     test('should return 500 if AddAccount throws', () => {
 
         // const emailValidatorStub =  makeEmailValidatorWhitError();
@@ -206,6 +206,27 @@ describe('Signup Controller', () => {
         const httpResponse = sut.handle(httpRequest);
         expect(httpResponse.statusCode).toBe(500);
         expect(httpResponse.body).toEqual(new ServerError());
+    });
+    test('should return 200 if valid data is provided', () => {
+        const { sut } = makeSut();
+        const httpRequest = {
+            body: {
+                name: 'valid_name',
+                email: 'valid_email@email',
+                password: 'valid_password',
+                passwordConfirmation: 'valid_password'
+            }
+        }
+        
+        const httpResponse = sut.handle(httpRequest);
+      
+        expect(httpResponse.statusCode).toBe(200);
+        expect(httpResponse.body).toEqual({
+            id: 'valid_id',
+            name: 'valid_name',
+            email: 'valid_email@email',
+            password: 'valid_password'
+        });
     });
 });
 
