@@ -41,5 +41,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@types/validator": "^13.7.0",
+    "validator": "^13.7.0"
   }
 }
