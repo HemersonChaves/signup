@@ -1,4 +1,4 @@
 interface IEmailValidator{
-    isvalid (email:string):boolean;
+    isValid (email:string):boolean;
 }
 export {IEmailValidator}

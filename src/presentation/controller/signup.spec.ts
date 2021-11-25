@@ -10,7 +10,7 @@ interface SutTypes {
 }
 const makeEmailValidator = (): IEmailValidator => {
     class EmailValidatorStub implements IEmailValidator {
-        isvalid(email: string): boolean {
+        isValid(email: string): boolean {
             return true;
         }
     }
@@ -115,7 +115,7 @@ describe('Signup Controller', () => {
     test('should return 400 if an invalid email is provided', async () => {
         const { sut, emailValidatorStub } = makeSut();
 
-        jest.spyOn(emailValidatorStub, 'isvalid').mockReturnValueOnce(false);
+        jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false);
         const httpRequest = {
             body: {
                 name: 'any_name',
@@ -150,7 +150,7 @@ describe('Signup Controller', () => {
     test('should call  EmailValidator with correct email', async () => {
         const { sut, emailValidatorStub } = makeSut();
 
-        const isValidSpy = jest.spyOn(emailValidatorStub, 'isvalid');
+        const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid');
         const httpRequest = {
             body: {
                 name: 'any_name',
@@ -169,7 +169,7 @@ describe('Signup Controller', () => {
 
         // const sut = new SignUpController( emailValidatorStub);
 
-        jest.spyOn(emailValidatorStub, 'isvalid').mockImplementationOnce(() => {
+        jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
             throw new Error();
         })
         const httpRequest = {
