@@ -87,4 +87,19 @@ describe("DbAddAccount Usecase", () => {
 
             })
     });
+    test("should throw if AddAccountRespository throws", async () => {
+        const { sut, addAccountRespositoryStub } = makeSut();
+
+        jest.spyOn(addAccountRespositoryStub, "add").mockReturnValueOnce(
+            new Promise((resolve, reject) =>
+                reject(new Error()))
+        );
+        const accaountData = {
+            name: "valid_name",
+            email: "valid_email",
+            password: "valid_password",
+        }
+        const PromiseAccount = sut.add(accaountData);
+        await expect(PromiseAccount).rejects.toThrow();
+    });
 });
