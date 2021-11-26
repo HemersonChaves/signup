@@ -8,6 +8,6 @@ interface IAddAccountModel{
 }
 
 interface IAddAccount{
-    add (account: IAddAccountModel): Promise<IAccount>
+    add (accountData: IAddAccountModel): Promise<IAccount>
 }
 export {IAddAccount, IAddAccountModel}
